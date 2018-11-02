@@ -18,4 +18,14 @@ class userController extends Controller
             'success' => 'true'
         ], 200);
     }
+    public function login(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'password' => 'required',
+        ]);
+        return response()->json([
+            'success' => 'true'
+        ], 200);
+    }
 }
