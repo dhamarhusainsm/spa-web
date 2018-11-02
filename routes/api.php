@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register', 'userController@store')->name('newRegister');
 
-Route::get('/product', 'productController@showAll')->name('showAllProduct');
+Route::get('/product', 'productController@index')->name('indexProduct');
