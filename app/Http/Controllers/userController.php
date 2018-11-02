@@ -12,8 +12,8 @@ class userController extends Controller
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->save();
-        return response('succes', 200)->header('Content-Type', 'application/json');
+        return response('{"succes":true}', 200)->header('Content-Type', 'application/json');
     }
 }
