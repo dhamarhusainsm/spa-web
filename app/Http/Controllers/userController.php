@@ -15,7 +15,7 @@ class userController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
         return response()->json([
-            'succes' => 'true'
+            'success' => 'true'
         ], 200);
     }
 }
