@@ -15,11 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// API ROUTE
-
-// api register
-Route::post('/api/register', 'userController@store')->name('newRegister');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
