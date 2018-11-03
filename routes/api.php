@@ -16,14 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-<<<<<<< HEAD
 
 Route::post('/register', 'userController@store')->name('newRegister');
-Route::post('/login', 'userController@login');
-=======
+Route::post('/login', 'userController@login')->name('login');
 // user
 Route::post('/user/signup', 'userController@store')->name('newRegister');
-Route::post('/user/login', 'userController@store')->name('newRegister');
 
->>>>>>> 913f6ad8ce7a6c842b823f336487bd1c052f15f9
 Route::get('/product', 'productController@index')->name('indexProduct');
