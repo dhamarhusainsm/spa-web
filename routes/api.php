@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/user/signup', 'userController@store')->name('newRegister');
 Route::post('/user/login', 'userController@login')->name('userLogin');
 
+Route::post('/booking', 'bookingController@store')->name('newBooking');
+
 Route::get('/product', 'productController@index')->name('indexProduct');
 
 
