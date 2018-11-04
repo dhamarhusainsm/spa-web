@@ -21,3 +21,6 @@ Route::post('/user/signup', 'userController@store')->name('newRegister');
 Route::post('/user/login', 'userController@login')->name('userLogin');
 
 Route::get('/product', 'productController@index')->name('indexProduct');
+
+
+Route::get('/available-time', 'timeController@index')->name('availableTime');
