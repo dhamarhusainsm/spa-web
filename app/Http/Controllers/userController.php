@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 class userController extends Controller
 {
@@ -20,12 +21,17 @@ class userController extends Controller
     }
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'password' => 'required',
-        ]);
-        return response()->json([
-            'success' => 'true'
-        ], 200);
+        $user = User::where('email',$request->email)->first();
+        // return $user;
+        if(Hash::check($request->password, $user->password))
+        {
+            return response()->json([
+                'success' => 'true'
+            ], 200);
+        }else{
+            return response()->json([
+                'success' => 'false'
+            ], 401);
+        }
     }
 }
