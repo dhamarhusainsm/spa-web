@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 class userController extends Controller
 {
-    //
+    public function index(){
+        $users = User::get();
+        return view('userPage')->with('users',$users);
+    }
     public function store(Request $request)
     {
         $user = new User;
@@ -18,6 +21,29 @@ class userController extends Controller
         return response()->json([
             'success' => 'true'
         ], 200);
+    }
+    public function medsos(Request $request)
+    {
+        $check = User::where('email',$request->email)->where('password',$request->provider);
+        if($check->count()<=0){
+            //kalau belum registrasi
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->avatar = $request->avatar;
+            $user->password = $request->provider;
+            $user->save();
+            return response()->json([
+                'success' => 'true',
+                'user_id' => $user->id
+            ], 200);
+        }else{
+            //sudah pernah registrasi ke login
+            return response()->json([
+                'success' => 'true',
+                'user_id' => $check->first()->id
+            ], 200);
+        }
     }
     public function login(Request $request)
     {
