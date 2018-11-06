@@ -17,7 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 // user
+Route::post('/user/', 'userController@info')->name('userInfo');
+
 Route::post('/user/signup', 'userController@store')->name('newRegister');
+
 Route::post('/user/login', 'userController@login')->name('userLogin');
 
 Route::post('/booking', 'bookingController@store')->name('newBooking');

@@ -26,12 +26,25 @@ class userController extends Controller
         if(Hash::check($request->password, $user->password))
         {
             return response()->json([
-                'success' => 'true'
+                'success' => 'true',
+                'user_id' => $user->id
             ], 200);
         }else{
             return response()->json([
                 'success' => 'false'
             ], 401);
         }
+    }
+    public function info(Request $request)
+    {
+        $user = User::where('id',$request->id)->first();
+        // return $user;
+        return response()->json([
+            'user_id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'avatar' => $user->avatar,
+            'no_hp' => $user->no_hp,
+        ], 200);
     }
 }
