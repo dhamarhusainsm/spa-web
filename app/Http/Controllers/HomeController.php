@@ -26,8 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::limit(15)->get();
-        $bookings = Booking::limit(15)->get();
+        $users = User::orderBy('created_at', 'DESC')->limit(5)->get();
+        $bookings = Booking::orderBy('created_at', 'DESC')->limit(5)->get();
         return view('home')->with('bookings',$bookings)->with('users',$users);
     }
 }

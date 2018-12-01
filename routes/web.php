@@ -18,8 +18,28 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/booking','bookingController@index')->name('bookingPage');
+Route::get('/booking/{id}','bookingController@infoWeb')->name('bookingInfo');
+Route::get('/booking/cancel/{id}','bookingController@bookingCancel')->name('bookingCancel');
+Route::get('/booking/done/{id}','bookingController@bookingDone')->name('bookingDone');
+
+
+Route::get('/product','productController@home')->name('productPage');
+Route::post('/product','productController@save')->name('saveProduct');
+Route::post('/product/update','productController@update')->name('updateProduct');
+Route::get('/product/new/','productController@new')->name('newProduct');
+Route::get('/product/{id}','productController@productInfo')->name('productInfo');
+Route::get('/product/delete/{id}','productController@deleteProduct')->name('deleteProduct');
 
 Route::get('/user','userController@index')->name('userPage');
-Route::get('/user/{@id}','userController@info')->name('userInfo');
+Route::get('/user/block/{id}','userController@block')->name('blockUser');
+Route::get('/user/edit/{id}','userController@editWeb')->name('editUser');
+Route::post('/user/edit/','userController@updateWeb')->name('updateUser');
+Route::post('/user/update','userController@update')->name('userUpdate');
+Route::get('/date', 'dateController@index')->name('dateController');
+Route::post('/date', 'dateController@dateSave')->name('dateSave');
+Route::get('/date/delete/{id}', 'dateController@dateDelete')->name('dateDelete');
+Route::get('/price', 'priceController@index')->name('priceAll');
+Route::get('/price/edit/{id}', 'priceController@edit')->name('editPrice');
+Route::post('/price', 'priceController@update')->name('updatePrice');
+Route::post('/send', 'fcmController@getAllTokens');
