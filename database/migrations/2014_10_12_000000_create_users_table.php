@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('role')->default(1);
             $table->string('avatar')->nullable();
             $table->string('phone')->nullable();
+            $table->text('fcm_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
