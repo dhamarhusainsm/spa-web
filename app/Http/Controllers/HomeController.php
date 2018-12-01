@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 
 use App\Booking;
-use App\User;
+
 
 class HomeController extends Controller
 {
