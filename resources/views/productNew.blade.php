@@ -33,7 +33,7 @@
                         <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="note">Nama</label>
+                        <label for="note">Note</label>
                         <textarea type="text" name="note" class="form-control" id="note"
                             placeholder="Isikan Ketentuan yang Harus Dibawa Pelanggan" rows="3"></textarea>
                     </div>
