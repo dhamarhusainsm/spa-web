@@ -168,7 +168,7 @@ class userController extends Controller
         if(!empty($request->file('avatar'))){
             Storage::delete('img/avatar/'.$user->avatar);
             $file       = $request->file('avatar');
-            $fileName   = $user->name.sha1(time()). $file->getClientOriginalExtension();
+            $fileName   = randomAvatarName(8).".".$file->getClientOriginalExtension();
             $request->file('avatar')->move("img/avatar", $fileName);
 
             $user->avatar = $fileName;
