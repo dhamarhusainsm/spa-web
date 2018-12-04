@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 use App\Booking;
-use App\User;
+
 
 class HomeController extends Controller
 {
@@ -26,8 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::limit(15)->get();
-        $bookings = Booking::limit(15)->get();
+        $users = User::orderBy('created_at', 'DESC')->limit(5)->get();
+        $bookings = Booking::orderBy('created_at', 'DESC')->limit(5)->get();
         return view('home')->with('bookings',$bookings)->with('users',$users);
     }
 }

@@ -18,6 +18,7 @@ class Times extends Migration
             $table->increments('id');
             $table->timestamp('date');
             $table->string('available',6)->default('false');
+            $table->text('reason');
             $table->timestamps();
         });
     }

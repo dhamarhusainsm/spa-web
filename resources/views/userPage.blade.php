@@ -1,48 +1,57 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col">
+            <a class="btn btn-outline-dark" href="/home/">Back to Home</a><br><br>
             <div class="card">
                 <div class="card-header"> <h1>User</h1></div>
-                <div class="card-body">
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">E-mail</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{-- {{ $bookings }} --}}
-                            @foreach ($users as $user)
-                            <tr>
-                                <th scope="row">{{$user->id}}</th>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->avatar }}</td>
-                                <td>{{$user->phone}}</td>
-                                <td>
-                                    <a href="/user/edit/{{$user->id}}" class="btn btn-warning">edit</a>&nbsp;&nbsp;&nbsp;
-                                    @if ($user->role != 0)
-                                    <a href="/user/block/{{$user->id}}" class="btn btn-danger">block</a>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Avatar</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">E-mail</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{-- {{ $bookings }} --}}
+                                @foreach ($users as $key => $user)
+                                <tr @if($user->created_at->format('Y-m-d') == date('Y-m-d')) style="color: #44bd32;" @endif>
+                                    <th scope="row">{{++$key}}</th>
+                                    <td>
+                                    @if (substr($user->avatar, 0, 4)!="http")
+                                    <img class="img-thumbnail" width="50" src="/img/avatar/{{ $user->avatar }}" alt="">
                                     @else
-                                    <a href="/user/unblock/{{$user->id}}" class="btn btn-danger">unblock</a>
+                                    <img class="img-thumbnail" width="50" src="{{ $user->avatar }}" alt="">
                                     @endif
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                    </td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->phone }}</td>
+                                    <td>
+                                        <a href="/user/edit/{{$user->id}}" class="btn btn-dark">edit</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(#btnBlock).click(function(){
+    alert("Block User ?");
+});
+</script>
 @endsection
