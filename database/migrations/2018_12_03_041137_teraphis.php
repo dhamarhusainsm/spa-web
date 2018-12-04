@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBookingsTable extends Migration
+class Teraphis extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateBookingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('teraphis', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->string('order');
-            $table->string('date');
-            $table->string('status',9)->default('pending');
+            $table->text('nama');
+            $table->text('ruangan');
+            $table->text('libur');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateBookingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookings');
+        //
     }
 }

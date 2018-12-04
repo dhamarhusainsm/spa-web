@@ -8,14 +8,31 @@
         <br><br>
             <div class="card">
                 <div class="card-header">
+                  @if ($user->role!=0)
+                  <a class="btn btn-outline-danger" data-toggle="modal" data-target="#modalBlock"> Block </a>
+                  @else
+                  <a class="btn btn-outline-danger" href="/user/block/{{ $user->id }}"> Unblock </a>
+                  @endif
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="/user/block/{{ $user->id }}" type="button" class=" float-right btn btn-danger btn-outline-danger">
-                            @if ($user->role!=0)
-                            Block
-                            @else
-                            Unblock
-                            @endif
-                        </a>
+                        <div class="modal fade" id="modalBlock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Block User</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <h1>Yakin ingin Block <b>{{ $user->name }}</b> ?</h1>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <a href="/user/block/{{ $user->id }}" class="btn btn-danger">Block</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">

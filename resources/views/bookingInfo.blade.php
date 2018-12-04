@@ -47,30 +47,66 @@
                         @else
                         <center>
                             <a class="btn btn-outline-danger" data-toggle="modal" data-target="#modalCancel">Batalkan</a>
-                            <div class="modal fade" id="modalCancel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Hapus Product</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <label for="pesan" class="col-form-label" style="float: left;">Pesan:</label>
-                                    <textarea name="pesan" class="form-control" id="pesan" placeholder="Pesan kenapa pesanan dibatalkan"></textarea>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <a href="/booking/cancel/{{ $booking->id }}" class="btn btn-danger">Cancel</a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <a href="/booking/done/{{ $booking->id }}" class="btn btn-outline-success">Diterima</a>
+                            <a class="btn btn-outline-success" data-toggle="modal" data-target="#modalDone">Diterima</a>
                         </center>
                         @endif
                     </form>
+
+                    <form action="/booking/done/{{$booking->id}}" method="get">
+                    <div class="modal fade" id="modalDone" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Teraphis</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                            <div class="modal-body">
+                              <label for="selectTeraphis">Teraphis</label>
+                              <select id="selectTeraphis" class="form-control" name="teraphis">
+                                @if($teraphis > 1)
+                                  @foreach($teraphis as $teraphi)
+                                    <option value="{{ $teraphi->nama }}">{{ $teraphi->nama  }}</option>
+                                  @endforeach
+                                @else
+                                <option value="{{ $teraphis->nama }}">{{ $teraphis->nama  }}</option>
+                                @endif
+                              </select>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-danger">Terima Booking</a>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                    <form action="/booking/cancel/{{$booking->id}}" method="get">
+                    <div class="modal fade" id="modalCancel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Hapus Booking</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                            <div class="modal-body">
+
+                              <label for="pesan" class="col-form-label" style="float: left;">Pesan:</label>
+                              <textarea name="pesan" class="form-control" id="pesan" placeholder="Pesan kenapa pesanan dibatalkan" required></textarea>
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-danger">Cancel Booking</a>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
             </div>
         </div>

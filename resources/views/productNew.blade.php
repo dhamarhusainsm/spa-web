@@ -42,6 +42,7 @@
                             <button type="submit" class="btn btn-warning">Simpan</button>
                         </div>
                     </div>
+                    {!! Form::close() !!}
 
                 </div>
             </div>

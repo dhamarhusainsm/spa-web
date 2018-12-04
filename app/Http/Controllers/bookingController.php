@@ -10,6 +10,7 @@ use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
+use App\Teraphi;
 use App\Inbox;
 
 class bookingController extends Controller
@@ -25,7 +26,7 @@ class bookingController extends Controller
     }
     //
     public function index(){
-        $bookings = Booking::orderBy('created_at', 'DESC')->get();
+        $bookings = Booking::orderBy('created_at', 'DESC')->paginate(5);
         return view('book')->with('bookings', $bookings);
     }
 
@@ -61,7 +62,8 @@ class bookingController extends Controller
     }
     public function infoWeb(Request $request){
         $booking = Booking::find($request->id);
-        return view('bookingInfo')->with('booking', $booking);
+        $teraphis = Teraphi::find(infoProduct($booking->order)->name);
+        return view('bookingInfo')->with(compact('teraphis', 'booking'));
     }
     public function bookingCancel(Request $request){
         $title = 'Pesanan Dibatalkan';
@@ -107,6 +109,8 @@ class bookingController extends Controller
         $booking->status = "diterima";
         $booking->save();
 
+        //dd($request->teraphis);
+
         $optionBuilder = new OptionsBuilder();
 
         $notificationBuilder = new PayloadNotificationBuilder($title);
@@ -117,6 +121,7 @@ class bookingController extends Controller
         $inbox->user_id = $booking->user_id;
         $inbox->title = $title;
         $inbox->content = $body;
+        $inbox->teraphis = $request->teraphis;
         $inbox->save();
 
         $dataBuilder = new PayloadDataBuilder();

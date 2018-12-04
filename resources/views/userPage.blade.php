@@ -44,6 +44,8 @@
                         </table>
                     </div>
                 </div>
+                <br>
+                {{ $users->links() }}
             </div>
         </div>
     </div>
