@@ -62,7 +62,10 @@ class bookingController extends Controller
     }
     public function infoWeb(Request $request){
         $booking = Booking::find($request->id);
-        $teraphis = Teraphi::find(infoProduct($booking->order)->name);
+        $pId= $booking->order;
+        setlocale(LC_TIME, "IND");
+        $day = strftime("%A", strtotime($booking->date));
+        $teraphis = Teraphi::where('spesialis','LIKE','%"product_id":'.$pId.',"value":true%')->where('libur','!=','')->get();
         return view('bookingInfo')->with(compact('teraphis', 'booking'));
     }
     public function bookingCancel(Request $request){

@@ -28,11 +28,12 @@
                             <tbody>
 
                               @foreach($teraphis as $key => $teraphi)
+
                               <tr>
                                 <th scope="row">{{ ++$key }}</th>
                                 <td>{{ $teraphi->nama }}</td>
                                 <td>{{ $teraphi->libur }}</td>
-                                <td>{{ $teraphi->spesialis}}</td>
+                                <td>{{ getSpesialis($teraphi->nama) }}</td>
                                 <td>
                                     <a class="btn btn-outline-dark" href="/teraphis/{{ $teraphi->id }}">Info</a>
                                 </td>

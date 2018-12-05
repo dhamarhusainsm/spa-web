@@ -18,6 +18,21 @@ class teraphisController extends Controller
 
     public function index(){
       $teraphis = Teraphi::orderBy('id')->get();
+      $t = null;
+      //
+      // foreach ($teraphis as $teraphi) {
+      //   $teraphi = json_decode($teraphi->spesialis);
+      //   foreach ($teraphi as $pId) {
+      //     $pIds = $teraphi->{'product_id'};
+      //     $t = $pIds;
+      //   }
+      // }
+      //
+      // foreach ($teraphis as $teraphi ) {
+      //   $t = json_encode($teraphi->spesialis);
+      //   infoProduct($t);
+      // }
+      // return ;
       return view('teraphisPage')->with('teraphis',$teraphis);
     }
 
@@ -36,11 +51,22 @@ class teraphisController extends Controller
       if($teraphis->count()<=0){
           $teraphis = new Teraphi;
       }
+
+
+      foreach($request->spesialis as $key){
+        $result = array(
+          'product_id' => DB::table('products')->where('name', $key)->first()->id,
+          'value' => true
+        );
+        $var[] = $result ;
+      }
       $teraphis->nama = $request->nama;
       $teraphis->libur = $request->libur;
-      $teraphis->spesialis = implode(", ",$request->spesialis);
+      $teraphis->spesialis = json_encode($var);
       $teraphis->save();
 
       return redirect()->back();
+
+      // return response()->json($var,200);
     }
 }

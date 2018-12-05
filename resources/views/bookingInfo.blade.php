@@ -41,6 +41,11 @@
                         value="{{ $booking->date }}">
                         </div>
                         @if ($booking->status == "diterima" )
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Teraphis</label>
+                            <input type="text" readonly class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        value="{{ infoTeraphis($booking->order)->nama }}">
+                        </div>
                             <p align="center" class="text-black-50">Pembookingan telah diterima</p>
                         @elseif($booking->status == "cancel")
                         <p align="center" class="text-red-50">Pembookingan telah dibatalkan</p>
@@ -65,13 +70,9 @@
                             <div class="modal-body">
                               <label for="selectTeraphis">Teraphis</label>
                               <select id="selectTeraphis" class="form-control" name="teraphis">
-                                @if($teraphis > 1)
                                   @foreach($teraphis as $teraphi)
                                     <option value="{{ $teraphi->nama }}">{{ $teraphi->nama  }}</option>
                                   @endforeach
-                                @else
-                                <option value="{{ $teraphis->nama }}">{{ $teraphis->nama  }}</option>
-                                @endif
                               </select>
                             </div>
                             <div class="modal-footer">
