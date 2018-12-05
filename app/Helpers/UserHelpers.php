@@ -13,7 +13,7 @@ if (!function_exists('getSpesialis')) {
         $spesialis = DB::table('teraphis')->where('nama',$name)->first()->spesialis;
         $spesialis = json_decode($spesialis,true);
         $result = null;
-        
+
         foreach ($spesialis as $key => $data) {
           $result .= infoProduct($data['product_id'])->name.',';
         }
@@ -27,4 +27,5 @@ if (!function_exists('randomAvatarName')) {
       $random .= rand(0, 1) ? rand(0, 9) : chr(rand(ord('a'), ord('z')));
     }
     return $random;
+  }
 }
