@@ -41,3 +41,6 @@ Route::post('/available-time', 'timeController@index')->name('availableTime');
 Route::get('/busy', 'timeController@busy')->name('busy');
 Route::post('/refresh', 'userController@refreshToken');
 Route::post('/inbox', 'userController@inbox');
+
+
+Route::get('/search/{name}', 'userController@searchUser');
