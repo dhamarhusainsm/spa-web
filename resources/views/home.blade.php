@@ -20,6 +20,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/price" >Price Management</a>
           </li>
+          <li>
+            <a class="nav-link" href="/teraphis">Teraphis Management</a>
+          </li>
         </ul>
       </div>
   </div>
@@ -84,7 +87,7 @@
                               <tr @if($booking->created_at->format('Y-m-d') == date('Y-m-d')) style="color:#18dcff;" @elseif($booking->status == "cancel") style="color:#e84118" @endif>
                                   <th scope="row">{{++$key}}</th>
                                   <td>{{ DB::table('users')->where('id',$booking->user_id)->first()->name }}</td>
-                                  <td>{{$booking->order}}</td>
+                                  <td>{{infoProduct($booking->order)->name}}</td>
                                   <td>{{$booking->date}}</td>
                                   <td>{{$booking->status}}</td>
                                   <td><a class="btn btn-dark" style="width:120px;" href="/booking/{{$booking->id}}">Info</a></td>

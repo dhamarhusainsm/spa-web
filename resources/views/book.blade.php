@@ -36,6 +36,8 @@
                         </table>
                     </div>
                 </div>
+                <br>
+                {{$bookings -> links()}}
             </div>
         </div>
     </div>

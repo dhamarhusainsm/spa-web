@@ -71,6 +71,8 @@
             </table>
             </div>
         </div>
+        <br>
+        {{$results -> links()}}
     </div>
 </div>
 </div>

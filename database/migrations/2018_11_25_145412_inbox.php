@@ -16,9 +16,9 @@ class Inbox extends Migration
         Schema::create('inbox', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('order');
-            $table->string('date');
-            $table->string('status');
+            $table->string('title');
+            $table->text('content');
+            $table->text('teraphis')->nullable();
             $table->timestamps();
         });
     }

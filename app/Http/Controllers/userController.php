@@ -22,7 +22,7 @@ class userController extends Controller
         $this->middleware('auth', ['except' => ['login', 'searchUser', 'store', 'phoneStore', 'medsos','info', 'inbox']]);;
     }
     public function index(){
-        $users = User::where('role','!=','2')->orderBy('created_at', 'DESC')->get();
+        $users = User::where('role','!=','2')->orderBy('created_at', 'DESC')->paginate(25);
         return view('userPage')->with('users',$users);
     }
     public function searchUser(Request $request){
