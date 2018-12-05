@@ -19,11 +19,14 @@ class userController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['login', 'store', 'phoneStore', 'medsos','info', 'inbox']]);;
+        $this->middleware('auth', ['except' => ['login', 'searchUser', 'store', 'phoneStore', 'medsos','info', 'inbox']]);;
     }
     public function index(){
         $users = User::where('role','!=','2')->orderBy('created_at', 'DESC')->paginate(25);
         return view('userPage')->with('users',$users);
+    }
+    public function searchUser(Request $request){
+        return User::where('name','LIKE', '%' . $request->name . '%')->where('email','LIKE', '%' . $request->name . '%')->limit(25)->get();
     }
     public function store(Request $request)
     {
@@ -168,7 +171,7 @@ class userController extends Controller
         if(!empty($request->file('avatar'))){
             Storage::delete('img/avatar/'.$user->avatar);
             $file       = $request->file('avatar');
-            $fileName   = $user->name.sha1(time()). $file->getClientOriginalExtension();
+            $fileName   = randomAvatarName(8).".".$file->getClientOriginalExtension();
             $request->file('avatar')->move("img/avatar", $fileName);
 
             $user->avatar = $fileName;
