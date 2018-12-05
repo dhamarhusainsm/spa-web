@@ -48,7 +48,7 @@
                     </center>
                     <br>
                     <div class="form-group">
-                        <input name="avatar" type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <input name="avatar" type="file" class="form-control-file" accept="image/*" id="exampleFormControlFile1">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama</label>
