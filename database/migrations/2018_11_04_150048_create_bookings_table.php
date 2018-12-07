@@ -17,6 +17,7 @@ class CreateBookingsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('order');
+            $table->text('room')->nullable();
             $table->string('date');
             $table->string('status',9)->default('pending');
             $table->timestamps();

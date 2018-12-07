@@ -36,15 +36,20 @@
                         value="{{ infoProduct($booking->order)->name }}">
                         </div>
                         <div class="form-group">
+                          <?php setlocale(LC_TIME, "IND"); ?>
                             <label for="exampleInputEmail1">Date</label>
                             <input type="text" readonly class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        value="{{ $booking->date }}">
+                        value="{{ strftime("%A, %B %d %Y", strtotime($booking->date)) }}">
                         </div>
                         @if ($booking->status == "diterima" )
                         <div class="form-group">
                             <label for="exampleInputEmail1">Teraphis</label>
                             <input type="text" readonly class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                         value="{{ infoTeraphis($booking->order)->nama }}">
+                        <br>
+                        <label for="ruangan">Ruangan</label>
+                          <input type="text" readonly class="form-control" id="ruangan" aria-describedby="emailHelp"
+                          value="{{ $booking->room }}">
                         </div>
                             <p align="center" class="text-black-50">Pembookingan telah diterima</p>
                         @elseif($booking->status == "cancel")
@@ -75,9 +80,29 @@
                                   @endforeach
                               </select>
                             </div>
+                            <div class="modal-body">
+                              <label for="selectRoom">Ruangan</label>
+                              <select id="selectRoom" class="form-control" name="room">
+                                <option selected="selected" value="Lavender 1">Lavender 1</option>
+                                <option value="Lavender 2">Lavender 2</option>
+                                <option value="Magnolia 1">Magnolia 1</option>
+                                <option value="Magnolia 2">Magnolia 2</option>
+                                <option value="Dendalion 1">Dendalion 1</option>
+                                <option value="Dendalion 2">Dendalion 2</option>
+                                <option value="Desk 1">Desk 1</option>
+                                <option value="Desk 2">Desk 2</option>
+                                <option value="Desk 3">Desk 3</option>
+                                <option value="Salon 1">Salon 1</option>
+                                <option value="Salon 2">Salon 2</option>
+                                <option value="Chair 1">Chair 1</option>
+                                <option value="Chair 2">Chair 2</option>
+                                <option value="Chair 3">Chair 3</option>
+                                <option value="Chair 4">Chair 4</option>
+                              </select>
+                            </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                              <button type="submit" class="btn btn-danger">Terima Booking</a>
+                              <button type="submit" class="btn btn-success">Terima Booking</a>
                             </div>
                         </div>
                       </div>
@@ -114,4 +139,7 @@
     </div>
 </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+</script>
 @endsection

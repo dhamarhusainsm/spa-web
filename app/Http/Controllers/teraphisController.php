@@ -43,7 +43,33 @@ class teraphisController extends Controller
 
     public function info(Request $request){
       $teraphis = Teraphi::find($request->id);
-      return view('teraphisInfo')->with('teraphis', $teraphis);
+      $products = Product::all();
+      return view('teraphisInfo')->with(compact('teraphis', 'products'));
+    }
+
+    public function test(){
+      echo infoSpesialis('Desi');
+    }
+
+    public function update(Request $request){
+      $teraphis = Teraphi::where('id',$request->id)->first();
+      if($teraphis->count()<=0){
+          $teraphis = new Teraphi;
+      }
+
+      foreach($request->spesialis as $key){
+        $result = array(
+          'product_id' => DB::table('products')->where('name', $key)->first()->id,
+          'value' => true
+        );
+        $var[] = $result ;
+      }
+      $teraphis->nama = $request->name;
+      $teraphis->libur = $request->libur;
+      $teraphis->spesialis = json_encode($var);
+      $teraphis->save();
+
+      return redirect()->back();
     }
 
     public function save(Request $request){

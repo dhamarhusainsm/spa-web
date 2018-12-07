@@ -43,7 +43,10 @@ Route::get('/price', 'priceController@index')->name('priceAll');
 Route::get('/price/edit/{id}', 'priceController@edit')->name('editPrice');
 Route::post('/price', 'priceController@update')->name('updatePrice');
 Route::post('/send', 'fcmController@getAllTokens');
+
 Route::get('/teraphis', 'teraphisController@index');
+Route::post('/teraphis/update', 'teraphisController@update');
 Route::get('/teraphis/new', 'teraphisController@baru');
 Route::get('/teraphis/{id}', 'teraphisController@info');
 Route::post('/teraphis', 'teraphisController@save');
+Route::get('/halo', 'teraphisController@test');

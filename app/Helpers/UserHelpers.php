@@ -15,11 +15,12 @@ if (!function_exists('getSpesialis')) {
         $result = null;
 
         foreach ($spesialis as $key => $data) {
-          $result .= infoProduct($data['product_id'])->name.',';
+          $result .= infoProduct($data['product_id'])->name.', ';
         }
         return $result;
     }
 }
+
 if (!function_exists('randomAvatarName')) {
   function randomAvatarName($length) {
     $random = '';

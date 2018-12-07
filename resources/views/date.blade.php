@@ -59,10 +59,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                  <?php setlocale(LC_TIME, "IND" ) ?>
                     @foreach($results as $result)
                     <tr>
                         <th scope="row">{{$result->id}}</th>
-                        <td>{{$result->date}}</td>
+                        <td>{{ strftime("%A, %B %d %Y. %H:%M", strtotime($result->date)) }}</td>
                         <td>tidak tersedia</td>
                         <td>{{ $result->reason }}</td>
                     </tr>

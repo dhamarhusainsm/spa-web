@@ -30,8 +30,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <!-- {!! Form::open(['url' => 'product/update', 'method' => 'POST', 'files' => true]) !!}
-                    {{ Form::token() }} -->
+                    {!! Form::open(['url' => 'teraphis/update', 'method' => 'POST', 'files' => true]) !!}
+                    {{ Form::token() }}
                     <input type="hidden" name="id" value="{{ $teraphis->id }}">
                     <br>
                     <div class="form-group">
@@ -40,19 +40,29 @@
                             placeholder="Isikan nama product" value="{{ $teraphis->nama }}">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Libur</label>
-                        <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="5">{{ $teraphis->libur }}</textarea>
+                      <label for="selectHari">Hari Libur</label><br>
+                      <select id="selectTime" class="form-control" name="libur">
+                          <option selected="selected" value="Senin">Senin</option>
+                          <option value="Selasa">Selasa</option>
+                          <option value="Rabu">Rabu</option>
+                          <option value="Kamis">Kamis</option>
+                      </select>
                     </div>
                     <div class="form-group">
-                        <label for="note">Ruangan</label>
-                        <textarea name="note" class="form-control" id="note" rows="3">{{ $teraphis->ruangan }}</textarea>
+                        <label>Spesialis</label><br>
+                        @foreach($products as $product)
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                          <input type="checkbox" name="spesialis[]" class="custom-control-input" id="{{ $product->name }}" value="{{ $product->name }}">
+                          <label class="custom-control-label" for="{{ $product->name }}">{{ $product->name }}</label>
+                        </div>
+                        @endforeach
                     </div>
                     <div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-warning">Simpan</button>
                         </div>
                     </div>
-                    <!-- {!! Form::close() !!} -->
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

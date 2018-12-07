@@ -105,11 +105,14 @@ class bookingController extends Controller
         return redirect()->back();
     }
     public function bookingDone(Request $request){
+        $teraphis = $request->teraphis;
+        $ruangan = $request->room;
         $title = 'Pesanan Diterima';
-        $body = 'Hore! Pesanan kamu telah diterima';
+        $body = 'Hore! Pesanan kamu telah diterima oleh Teraphis ' . $teraphis . ' di ruangan ' . $ruangan;
 
         $booking = Booking::find($request->id);
         $booking->status = "diterima";
+        $booking->room = $request->room;
         $booking->save();
 
         //dd($request->teraphis);
