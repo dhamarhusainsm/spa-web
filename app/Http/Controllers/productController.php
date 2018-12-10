@@ -18,6 +18,7 @@ class productController extends Controller
             $variable['image'] = "img/product/".$product->image;
             $variable['category'] = $product->category;
             $variable['description'] = $product->description;
+            $variable['note'] = $product->note;
             $variable['price'] = infoPrice($product->id);
             $variable['available'] = $product->available;
             $result[] = $variable;

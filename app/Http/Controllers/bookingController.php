@@ -74,6 +74,7 @@ class bookingController extends Controller
 
         $booking = Booking::find($request->id);
         $booking->status = 'cancel';
+        $booking->message = $request->pesan;
         $booking->save();
 
         $optionBuilder = new OptionsBuilder();

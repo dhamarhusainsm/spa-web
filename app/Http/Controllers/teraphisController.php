@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Teraphi;
 use App\job;
+use App\Booking;
 use App\Product;
 
 class teraphisController extends Controller
@@ -19,20 +20,6 @@ class teraphisController extends Controller
     public function index(){
       $teraphis = Teraphi::orderBy('id')->get();
       $t = null;
-      //
-      // foreach ($teraphis as $teraphi) {
-      //   $teraphi = json_decode($teraphi->spesialis);
-      //   foreach ($teraphi as $pId) {
-      //     $pIds = $teraphi->{'product_id'};
-      //     $t = $pIds;
-      //   }
-      // }
-      //
-      // foreach ($teraphis as $teraphi ) {
-      //   $t = json_encode($teraphi->spesialis);
-      //   infoProduct($t);
-      // }
-      // return ;
       return view('teraphisPage')->with('teraphis',$teraphis);
     }
 
@@ -45,10 +32,6 @@ class teraphisController extends Controller
       $teraphis = Teraphi::find($request->id);
       $products = Product::all();
       return view('teraphisInfo')->with(compact('teraphis', 'products'));
-    }
-
-    public function test(){
-      echo infoSpesialis('Desi');
     }
 
     public function update(Request $request){

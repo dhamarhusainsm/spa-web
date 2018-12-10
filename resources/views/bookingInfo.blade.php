@@ -53,6 +53,11 @@
                         </div>
                             <p align="center" class="text-black-50">Pembookingan telah diterima</p>
                         @elseif($booking->status == "cancel")
+                        <div class="form-group">
+                          <label for="pesan">Pesan</label>
+                          <input type="text" readonly class="form-control" id="pesan" aria-describedby="emailHelp"
+                            value="{{ $booking->message }}">
+                        </div>
                         <p align="center" class="text-red-50">Pembookingan telah dibatalkan</p>
                         @else
                         <center>
