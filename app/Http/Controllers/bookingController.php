@@ -42,7 +42,7 @@ class bookingController extends Controller
         ], 200);
     }
     public function history(Request $request){
-        $booking = Booking::where('user_id', $request->user_id)->get();
+        $booking = Booking::where('user_id', $request->user_id)->orderBy('created_at', 'DESC')->get();
         $result = array();
         foreach ($booking as $data) {
             $variable['order'] = DB::table('products')->where('id',$data->order)->first()->name;
