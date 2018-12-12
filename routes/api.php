@@ -44,3 +44,5 @@ Route::post('/inbox', 'userController@inbox');
 
 
 Route::get('/search/{name}', 'userController@searchUser');
+Route::get('/booking/name/{name}', 'bookingController@searchUser');
+Route::get('/booking/date/{name}', 'bookingController@searchDate');

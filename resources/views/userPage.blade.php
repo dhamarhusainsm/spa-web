@@ -16,7 +16,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">cari</span>
                             </div>
-                            <input type="text" class="form-control" id="nameSearch" onchange="searchUser();" placeholder="ketikan nama user" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" id="nameSearch" placeholder="ketikan nama user" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                         <table class="table" id="tableOri">
                             <thead>
@@ -86,26 +86,24 @@ $(document).ready(function() {
     //     setTimeout(checkSearch, 2500);
     // }
     // checkSearch();
-    document.getElementById("nameSearch").addEventListener("keypress", searchUser);
+    document.getElementById("nameSearch").addEventListener("keyup", searchUser);
     function searchUser(){
         var tableSearch = document.getElementById("tableSearch");
         var tableOri = document.getElementById("tableOri");
+        $( "#search-tbody" ).empty();
         if(document.getElementById("nameSearch").value.length == 0){
             tableOri.style.display = "";
             tableSearch.style.display = "none";
-            $( "#search-tbody" ).empty();
         }else{
             tableOri.style.display = "none";
             tableSearch.style.display = "";
-            $( "#search-tbody" ).empty();
             var someUrl = "/api/search/"+document.getElementById("nameSearch").value;
             $.ajax({
                 type:"GET",
                 url: someUrl,
                 success: function(data) {
                     $.each(data, function(index, element) {
-                        var imageCheck;
-                        if(element.avatar.substr(0, 4) != "http"){
+                        if(element.avatar != null && element.avatar.substr(0, 4) != "http"){
                             imageCheck = '<td><img class="img-thumbnail" width="70" src="/img/avatar/'+ element.avatar +'" ></td>';
                         }else{
                             imageCheck = '<td><img class="img-thumbnail" width="70" src="'+ element.avatar +'" ></td>';
