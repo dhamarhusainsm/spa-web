@@ -82,13 +82,14 @@
                               </tr>
                           </thead>
                           <tbody>
+                            <?php setlocale(LC_TIME, "IND"); ?>
                               {{-- {{ $bookings }} --}}
                               @foreach ($bookings as $key => $booking)
                               <tr @if($booking->created_at->format('Y-m-d') == date('Y-m-d')) style="color:#18dcff;" @elseif($booking->status == "cancel") style="color:#e84118" @endif>
                                   <th scope="row">{{++$key}}</th>
                                   <td>{{ DB::table('users')->where('id',$booking->user_id)->first()->name }}</td>
                                   <td>{{infoProduct($booking->order)->name}}</td>
-                                  <td>{{$booking->date}}</td>
+                                  <td>{{ strftime("%A, %B %d %Y. %H:%M", strtotime($booking->date))}}</td>
                                   <td>{{$booking->status}}</td>
                                   <td><a class="btn btn-dark" style="width:120px;" href="/booking/{{$booking->id}}">Info</a></td>
                               </tr>

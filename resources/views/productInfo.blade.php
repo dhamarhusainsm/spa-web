@@ -8,7 +8,11 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-md-right">
+                      @if(getRole() == 2 )
                       <a class="btn btn-outline-danger" data-toggle="modal" data-target="#modalDelete">Delete</a>
+                      @else
+                      <a class="btn btn-outline-danger">Delete</a>
+                      @endif
                         <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">

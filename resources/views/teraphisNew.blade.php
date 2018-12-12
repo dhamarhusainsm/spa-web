@@ -21,7 +21,7 @@
                         <label for="selectHari">Hari Libur</label><br>
 
                         <select id="selectTime" class="form-control" name="libur">
-                            <option value="Senin">Senin</option>
+                            <option selected="selected" value="Senin">Senin</option>
                             <option value="Selasa">Selasa</option>
                             <option value="Rabu">Rabu</option>
                             <option value="Kamis">Kamis</option>
@@ -29,6 +29,7 @@
                     </div>
 
                     <div class="form-group">
+                      <label>Spesialis</label>
                       @foreach($products as $product)
                       <div class="custom-control custom-checkbox custom-control-inline">
                         <input type="checkbox" name="spesialis[]" class="custom-control-input" id="{{ $product->name }}" value="{{ $product->name }}">

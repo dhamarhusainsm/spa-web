@@ -15,7 +15,7 @@ use App\User;
 class dateController extends Controller
 {
     public function index(){
-        $results = DB::table('times')->paginate(1);
+        $results = DB::table('times')->paginate(10);
         return view('date')->with('results',$results);
     }
     public function dateSave(Request $request){

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <a class="btn btn-outline-dark" href="/home/">Back To home</a><br><br>
-            <div class="card">
+            <div class="card">        
                 <div class="card-header">
                     <h1>Booking</h1>
                 </div>
@@ -34,19 +34,19 @@
                             </tr>
                         </thead>
                         <tbody id="ori-table">
+														<?php setlocale(LC_TIME, "IND"); ?>
                             @foreach($bookings as $key => $booking)
-                            <tr @if($booking->created_at->format('Y-m-d') == date('Y-m-d')) style="color:#18dcff;"
-                                @elseif($booking->status == "cancel") style="color:#e84118" @endif>
-                                <th scope="row">{{ ++$key }}</th>
-                                <td>{{ DB::table('users')->where('id',$booking->user_id)->first()->name }}</td>
-                                <td>{{ DB::table('products')->where('id',$booking->order)->first()->name }}</td>
-                                <td>{{ $booking->date}}</td>
-                                <td>{{ $booking->status}}</td>
-                                <td>
-                                    <a class="btn btn-outline-dark" href="/booking/{{$booking->id}}">Info</a>
-                                </td>
-                            </tr>
-                            @endforeach
+                                <tr @if($booking->created_at->format('Y-m-d') == date('Y-m-d')) style="color:#18dcff;" @elseif($booking->status == "cancel") style="color:#e84118" @endif>
+                                    <th scope="row">{{ ++$key }}</th>
+                                    <td>{{ DB::table('users')->where('id',$booking->user_id)->first()->name }}</td>
+                                    <td>{{ DB::table('products')->where('id',$booking->order)->first()->name }}</td>
+                                    <td>{{ strftime("%A, %B %d %Y. %H:%M", strtotime($booking->date)) }}</td>
+                                    <td>{{ $booking->status}}</td>
+                                    <td>
+                                        <a class="btn btn-outline-dark" href="/booking/{{$booking->id}}">Info</a>
+                                    </td>
+                                </tr>
+																@endforeach
                         </tbody>
                         <tbody id="nama-table">
                         </tbody>

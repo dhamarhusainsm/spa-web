@@ -53,7 +53,7 @@ class userController extends Controller
     }
 
     public function inbox(Request $request){
-        $inbox = Inbox::where('user_id', $request->user_id)->get();
+        $inbox = Inbox::where('user_id', $request->user_id)->orderBy('created_at', 'DESC')->get();
         $result = array();
 
         foreach($inbox as $data){

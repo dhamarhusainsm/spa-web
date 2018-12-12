@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+
 if (!function_exists('infoUser')) {
     function infoUser($id)
     {
@@ -15,11 +17,18 @@ if (!function_exists('getSpesialis')) {
         $result = null;
 
         foreach ($spesialis as $key => $data) {
-          $result .= infoProduct($data['product_id'])->name.',';
+          $result .= infoProduct($data['product_id'])->name.', ';
         }
         return $result;
     }
 }
+if(!function_exists('getRole')){
+    function getRole(){
+      return Auth::user()->role;
+    }
+}
+
+
 if (!function_exists('randomAvatarName')) {
     function randomAvatarName($length) {
         $random = '';
