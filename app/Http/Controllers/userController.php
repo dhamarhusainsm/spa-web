@@ -26,7 +26,7 @@ class userController extends Controller
         return view('userPage')->with('users',$users);
     }
     public function searchUser(Request $request){
-        return User::where('name','LIKE', '%' . $request->name . '%')->where('email','LIKE', '%' . $request->name . '%')->limit(25)->get();
+        return User::where('name','LIKE', '%'.$request->name.'%')->get();
     }
     public function store(Request $request)
     {
