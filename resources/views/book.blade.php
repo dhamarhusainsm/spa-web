@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <a class="btn btn-outline-dark" href="/home/">Back To home</a><br><br>
-            <div class="card">        
+            <div class="card">
                 <div class="card-header">
                     <h1>Booking</h1>
                 </div>
@@ -73,6 +73,7 @@
         function searchUser() {
             $('#ori-table').css('display','none');
             $('#nama-table').empty();
+            $('.pagination').css('display','none');
             $('#date-table').empty();
             document.getElementById("datepicker").value= '';
             if (document.getElementById("nameSearch").value.length > 0) {
@@ -99,6 +100,7 @@
                 });
             }else{
                 $('#ori-table').css('display','');
+                $('.pagination').css('display','');
                 $('#nama-table').empty();
                 $('#date-table').empty();
                 document.getElementById("datepicker").value= '';
@@ -107,6 +109,7 @@
         function searchDate(){
             $('#ori-table').css('display','none');
             $('#nama-table').empty();
+            $('.pagination').css('display','none');
             $('#date-table').empty();
             document.getElementById("nameSearch").value='';
             if (document.getElementById("datepicker").value!='') {
@@ -133,6 +136,7 @@
                 });
             }else{
                 $('#ori-table').css('display','');
+                $('.pagination').css('display','');
                 $('#nama-table').empty();
                 $('#date-table').empty();
             }

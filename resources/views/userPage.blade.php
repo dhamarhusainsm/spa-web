@@ -94,9 +94,11 @@ $(document).ready(function() {
         if(document.getElementById("nameSearch").value.length == 0){
             tableOri.style.display = "";
             tableSearch.style.display = "none";
+            $('.pagination').css('display','');
         }else{
             tableOri.style.display = "none";
             tableSearch.style.display = "";
+            $('.pagination').css('display','none');
             var someUrl = "/api/search/"+document.getElementById("nameSearch").value;
             $.ajax({
                 type:"GET",
