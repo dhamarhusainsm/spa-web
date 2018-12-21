@@ -50,6 +50,10 @@
                         <label for="ruangan">Ruangan</label>
                           <input type="text" readonly class="form-control" id="ruangan" aria-describedby="emailHelp"
                           value="{{ $booking->room }}">
+                          <br>
+                        <label for="code">Kode</label>
+                          <input type="text" readonly class="form-control" id="code" aria-describedby="emailHelp"
+                           value="{{ $booking->code }}">
                         </div>
                             <p align="center" class="text-black-50">Pembookingan telah diterima</p>
                         @elseif($booking->status == "cancel")

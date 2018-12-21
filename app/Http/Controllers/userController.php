@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use App\Inbox;
+use App\Booking;
 use Illuminate\Support\Facades\DB;
 
 
@@ -22,7 +23,7 @@ class userController extends Controller
         $this->middleware('auth', ['except' => ['login', 'searchUser', 'store', 'phoneStore', 'medsos','info', 'inbox']]);;
     }
     public function index(){
-        $users = User::where('role','!=','2')->orderBy('created_at', 'DESC')->paginate(25);
+        $users = User::where('role','!=','2')->orderBy('created_at', 'DESC')->paginate(10);
         return view('userPage')->with('users',$users);
     }
     public function searchUser(Request $request){
@@ -59,6 +60,7 @@ class userController extends Controller
         foreach($inbox as $data){
             $var['title'] = $data->title;
             $var['content'] = $data->content;
+            $var['code'] = $data->code;
             $result[] = $var;
         }
         return response()->json(

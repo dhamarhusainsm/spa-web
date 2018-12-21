@@ -33,29 +33,67 @@
               <div class="card">
                   <div class="card-header"><h1>User Management</h1></div>
                   <div class="card-body" class="">
-                      <table class="table">
-                          <thead>
-                              <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Name</th>
-                                  <th scope="col">E-mail</th>
-                                  <th scope="col">Phone</th>
-                                  <th scope="col">Action</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              {{-- {{ $bookings }} --}}
-                              @foreach ($users as $key => $user)
-                                <tr @if($user->created_at->format('Y-m-d') == date('Y-m-d')) style="color: #44bd32;" @endif>
-                                    <th scope="row">{{++$key}}</th>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{$user->phone}}</td>
-                                    <td><a class="btn btn-dark" style="width:120px;" href="/user/edit/{{$user->id}}">Info</a></td>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" id="customer-tab" href="#customers-tab" role="tab" aria-controls="customers-tab" aria-selected="true">Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="kasir-tab" data-toggle="pill" href="#kasirs-tab" role="tab" aria-controls="kasirs-tab" aria-selected="false">Kasir</a>
+                        </li>
+                    </ul>
+                    <br>
+
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="customers-tab" role="tabpanel" aria-labelledby="customers-tab">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">E-mail</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{-- {{ $bookings }} --}}
+                                    @foreach ($customer as $key => $user)
+                                        <tr @if($user->created_at->format('Y-m-d') == date('Y-m-d')) style="color: #44bd32;" @endif>
+                                            <th scope="row">{{++$key}}</th>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{$user->phone}}</td>
+                                            <td><a class="btn btn-dark" style="width:120px;" href="/user/edit/{{$user->id}}">Info</a></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                      </div>
+                      
+                      <div class="tab-pane" id="kasirs-tab">
+                        <table class="table">
+                                <tr>
+                                    <th scope="col" width="10%">#</th>
+                                    <th scope="col" width="30%">Name</th>
+                                    <th scope="col" width="30%">E-mail</th>
+                                    <th scope="col" width="30%">Action</th>
                                 </tr>
-                              @endforeach
-                          </tbody>
-                      </table>
+                            </thead>
+                            <tbody>
+                            {{-- {{ $bookings }} --}}
+                                @foreach ($kasir as $key => $user)
+                                    <tr @if($user->created_at->format('Y-m-d') == date('Y-m-d')) style="color: #44bd32;" @endif>
+                                        <th scope="row">{{ ++$key }}</th>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td><a class="btn btn-dark" style="width:120px;" href="/user/edit/{{$user->id}}">Info</a></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                  </div>
+                  </div>
+
                   </div>
                   <div class="card-footer">
                       <a style="font-weight:bold;font-size:23px;"  href="/user">More</a>

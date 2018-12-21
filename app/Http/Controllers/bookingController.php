@@ -26,11 +26,11 @@ class bookingController extends Controller
     }
     //
     public function index(){
-        $bookings = Booking::orderBy('created_at', 'DESC')->paginate(5);
+        $bookings = Booking::orderBy('created_at', 'DESC')->paginate(10);
         return view('book')->with('bookings', $bookings);
     }
     public function searchUser(Request $request){
-        return  DB::table('bookings')->select('bookings.id','users.name','bookings.date','bookings.status','products.name AS order')->join('users', 'bookings.user_id', '=', 'users.id')->join('products', 'bookings.order', '=', 'products.id')->where('users.name','LIKE', '%'.$request->name.'%')->get();
+        return  DB::table('bookings')->select('bookings.id','users.name','bookings.date','bookings.status','products.name AS order')->join('users', 'bookings.user_id', '=', 'users.id')->join('products', 'bookings.order', '=', 'products.id')->where('users.name','LIKE', '%'.$request->name.'%')->orWhere('code', $request->name)->get();
         // return Booking::hasMany('App\User')->where('name','LIKE', '%'.$request->name.'%')->get();
     }
     public function searchDate(Request $request){
@@ -121,9 +121,13 @@ class bookingController extends Controller
         $title = 'Pesanan Diterima';
         $body = 'Hore! Pesanan kamu telah diterima oleh Teraphis ' . $teraphis . ' di ruangan ' . $ruangan;
 
+        $char="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        $random = substr(str_shuffle($char), 0, 4);
+
         $booking = Booking::find($request->id);
         $booking->status = "diterima";
         $booking->room = $request->room;
+        $booking->code = date('ymd', strtotime($booking->date)). $random;
         $booking->save();
 
         //dd($request->teraphis);
@@ -138,6 +142,7 @@ class bookingController extends Controller
         $inbox->user_id = $booking->user_id;
         $inbox->title = $title;
         $inbox->content = $body;
+        $inbox->code = date('ymd', strtotime($booking->date)). $random;
         $inbox->teraphis = $request->teraphis;
         $inbox->save();
 

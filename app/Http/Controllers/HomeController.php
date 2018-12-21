@@ -27,8 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at', 'DESC')->limit(5)->get();
+        $customer = User::where('role','1')->orderBy('created_at', 'DESC')->limit(5)->get();
         $bookings = Booking::orderBy('created_at', 'DESC')->limit(5)->get();
-        return view('home')->with('bookings',$bookings)->with('users',$users);
+        $kasir = User::where('role','3')->orderBy('created_at', 'DESC')->limit(5)->get();
+        return view('home')->with('bookings',$bookings)->with(compact('customer', 'kasir'));
     }
 }

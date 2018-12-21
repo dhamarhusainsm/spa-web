@@ -18,7 +18,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <input type="text" id="nameSearch" placeholder="Cari nama user" class="form-control">
+                                <input type="text" id="nameSearch" placeholder="Cari nama atau kode" class="form-control">
                             </div>
                         </div>
                     </div>
