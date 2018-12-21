@@ -20,6 +20,7 @@ class CreateBookingsTable extends Migration
             $table->text('room')->nullable();
             $table->string('date');
             $table->string('status',9)->default('pending');
+            $table->string('code', 15)->nullable();
             $table->timestamps();
         });
     }
