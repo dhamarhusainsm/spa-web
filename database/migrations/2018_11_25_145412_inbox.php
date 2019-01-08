@@ -19,7 +19,6 @@ class Inbox extends Migration
             $table->string('title');
             $table->text('content');
             $table->text('teraphis')->nullable();
-            $table->string('code', 15)->nullable();
             $table->timestamps();
         });
     }

@@ -60,7 +60,6 @@ class userController extends Controller
         foreach($inbox as $data){
             $var['title'] = $data->title;
             $var['content'] = $data->content;
-            $var['code'] = $data->code;
             $result[] = $var;
         }
         return response()->json(

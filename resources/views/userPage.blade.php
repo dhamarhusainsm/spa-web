@@ -86,39 +86,42 @@ $(document).ready(function() {
     //     setTimeout(checkSearch, 2500);
     // }
     // checkSearch();
-    document.getElementById("nameSearch").addEventListener("keyup", searchUser);
-    function searchUser(){
-        var tableSearch = document.getElementById("tableSearch");
-        var tableOri = document.getElementById("tableOri");
-        $( "#search-tbody" ).empty();
-        if(document.getElementById("nameSearch").value.length == 0){
-            tableOri.style.display = "";
-            tableSearch.style.display = "none";
-            $('.pagination').css('display','');
-        }else{
-            tableOri.style.display = "none";
-            tableSearch.style.display = "";
-            $('.pagination').css('display','none');
-            var someUrl = "/api/search/"+document.getElementById("nameSearch").value;
-            $.ajax({
-                type:"GET",
-                url: someUrl,
-                success: function(data) {
-                    $.each(data, function(index, element) {
-                        if(element.avatar != null && element.avatar.substr(0, 4) != "http"){
-                            imageCheck = '<td><img class="img-thumbnail" width="70" src="/img/avatar/'+ element.avatar +'" ></td>';
-                        }else{
-                            imageCheck = '<td><img class="img-thumbnail" width="70" src="'+ element.avatar +'" ></td>';
-                        }
-                        var html = '<tr>'+imageCheck+'<td>'+ element.name +'</td><td>'+ element.email +'</td><td>'+ element.phone +'</td><td><a href="/user/edit/'+ element.id +'" class="btn btn-dark">edit</a></td></tr>'
-                        $('#search-tbody').append(html);
-                    });
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert(errorThrown);
-                },
-                dataType: "json"
-            });
+    document.getElementById("nameSearch").addEventListener("keypress", searchUser);
+    function searchUser(e){
+        var key = e.which || e.keycode;
+        if(key === 13){
+            var tableSearch = document.getElementById("tableSearch");
+            var tableOri = document.getElementById("tableOri");
+            $( "#search-tbody" ).empty();
+            if(document.getElementById("nameSearch").value.length == 0){
+                tableOri.style.display = "";
+                tableSearch.style.display = "none";
+                $('.pagination').css('display','');
+            }else{
+                tableOri.style.display = "none";
+                tableSearch.style.display = "";
+                $('.pagination').css('display','none');
+                var someUrl = "/api/search/"+document.getElementById("nameSearch").value;
+                $.ajax({
+                    type:"GET",
+                    url: someUrl,
+                    success: function(data) {
+                        $.each(data, function(index, element) {
+                            if(element.avatar != null && element.avatar.substr(0, 4) != "http"){
+                                imageCheck = '<td><img class="img-thumbnail" width="70" src="/img/avatar/'+ element.avatar +'" ></td>';
+                            }else{
+                                imageCheck = '<td><img class="img-thumbnail" width="70" src="'+ element.avatar +'" ></td>';
+                            }
+                            var html = '<tr>'+imageCheck+'<td>'+ element.name +'</td><td>'+ element.email +'</td><td>'+ element.phone +'</td><td><a href="/user/edit/'+ element.id +'" class="btn btn-dark">edit</a></td></tr>'
+                            $('#search-tbody').append(html);
+                        });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    },
+                    dataType: "json"
+                });
+            }
         }
     }
 });

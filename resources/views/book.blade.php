@@ -68,42 +68,45 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-        document.getElementById("nameSearch").addEventListener("keyup", searchUser);
+        document.getElementById("nameSearch").addEventListener("keypress", searchUser);
         document.getElementById("datepicker").addEventListener("input", searchDate);
-        function searchUser() {
-            $('#ori-table').css('display','none');
-            $('#nama-table').empty();
-            $('.pagination').css('display','none');
-            $('#date-table').empty();
-            document.getElementById("datepicker").value= '';
-            if (document.getElementById("nameSearch").value.length > 0) {
-                var someUrl = '/api/booking/name/' + document.getElementById("nameSearch").value;
-                $.ajax({
-                    type: "GET",
-                    url: someUrl,
-                    success: function (data) {
-                        $.each(data, function (index, element) {
-                            index = index+1;
-                            console.log(element);
-                            var html = '<tr><td>'+ index +'</td><td>' + element.name +
-                                '</td><td>' + element.order + '</td><td>' + element.date +
-                                '</td><td>' + element.status +
-                                '</td><td><a href="/booking/' + element.id +
-                                '" class="btn btn-dark">Info</a></td></tr>'
-                            $('#nama-table').append(html);
-                        });
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert(errorThrown);
-                    },
-                    dataType: "json"
-                });
-            }else{
-                $('#ori-table').css('display','');
-                $('.pagination').css('display','');
+        function searchUser(e) {
+            var key = e.which || e.keycode;
+            if(key == 13){
+                $('#ori-table').css('display','none');
                 $('#nama-table').empty();
+                $('.pagination').css('display','none');
                 $('#date-table').empty();
                 document.getElementById("datepicker").value= '';
+                if (document.getElementById("nameSearch").value.length > 0) {
+                    var someUrl = '/api/booking/name/' + document.getElementById("nameSearch").value;
+                    $.ajax({
+                        type: "GET",
+                        url: someUrl,
+                        success: function (data) {
+                            $.each(data, function (index, element) {
+                                index = index+1;
+                                console.log(element);
+                                var html = '<tr><td>'+ index +'</td><td>' + element.name +
+                                    '</td><td>' + element.order + '</td><td>' + element.date +
+                                    '</td><td>' + element.status +
+                                    '</td><td><a href="/booking/' + element.id +
+                                    '" class="btn btn-dark">Info</a></td></tr>'
+                                $('#nama-table').append(html);
+                            });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(errorThrown);
+                        },
+                        dataType: "json"
+                    });
+                }else{
+                    $('#ori-table').css('display','');
+                    $('.pagination').css('display','');
+                    $('#nama-table').empty();
+                    $('#date-table').empty();
+                    document.getElementById("datepicker").value= '';
+                }
             }
         }
         function searchDate(){

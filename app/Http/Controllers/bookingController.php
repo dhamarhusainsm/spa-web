@@ -63,6 +63,7 @@ class bookingController extends Controller
             // $variable['order_desc'] = infoProduct($data->order)['description'];
             $variable['date'] = $data->date;
             $variable['status'] = $data->status;
+            $variable['code'] = $data->code;
             $result[] = $variable;
         }
         return response() -> json ([
@@ -142,7 +143,6 @@ class bookingController extends Controller
         $inbox->user_id = $booking->user_id;
         $inbox->title = $title;
         $inbox->content = $body;
-        $inbox->code = date('ymd', strtotime($booking->date)). $random;
         $inbox->teraphis = $request->teraphis;
         $inbox->save();
 
