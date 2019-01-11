@@ -114,9 +114,14 @@
             $('#nama-table').empty();
             $('.pagination').css('display','none');
             $('#date-table').empty();
+            dateSearchValue = document.getElementById("datepicker").value;
+            dateSearchValue = dateSearchValue.split("-")
+            if(dateSearchValue[1].charAt(0) == "0"){dateSearchValue[1]=dateSearchValue[1].substr(1)}
+            dateSearchValue = dateSearchValue.join("-");
+            document.getElementById("nameSearch").value='';
             document.getElementById("nameSearch").value='';
             if (document.getElementById("datepicker").value!='') {
-                var someUrl = '/api/booking/date/' + document.getElementById("datepicker").value;
+                var someUrl = '/api/booking/date/' + dateSearchValue;
                 $.ajax({
                     type: "GET",
                     url: someUrl,
