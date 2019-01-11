@@ -16,8 +16,8 @@ class Prices extends Migration
         Schema::create('prices', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id');
-            $table->integer('diskon');
-            $table->integer('harga');
+            $table->integer('diskon')->nullable();
+            $table->integer('harga')->nullable();
             $table->timestamps();
         });
     }

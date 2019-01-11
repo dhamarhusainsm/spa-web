@@ -18,8 +18,10 @@ class CreateBookingsTable extends Migration
             $table->integer('user_id');
             $table->string('order');
             $table->text('room')->nullable();
+            $table->text('message')->nullable();
             $table->string('date');
             $table->string('status',9)->default('pending');
+            $table->string('code', 15)->nullable();
             $table->timestamps();
         });
     }

@@ -16,8 +16,8 @@ class Teraphis extends Migration
         Schema::create('teraphis', function (Blueprint $table) {
             $table->increments('id');
             $table->text('nama');
-            $table->text('ruangan');
             $table->text('libur');
+            $table->text('spesialis');
             $table->timestamps();
         });
     }
