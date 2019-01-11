@@ -36,9 +36,9 @@ class bookingController extends Controller
     public function searchDate(Request $request){
         // return  DB::table('bookings')->select('bookings.id','users.name','bookings.date','bookings.status','products.name AS order')->join('users', 'bookings.user_id', '=', 'users.id')->join('products', 'bookings.order', '=', 'products.id')->where('users.name','LIKE', '%'.$request->name.'%')->get();
         // return Booking::hasMany('App\User')->where('name','LIKE', '%'.$request->name.'%')->get();
-        $carbon = new \Carbon\Carbon($request->name);
-        $carbon = $carbon->format('Y-m-d');
-        return DB::table('bookings')->select('bookings.id','users.name','bookings.date','bookings.status','products.name AS order')->join('users', 'bookings.user_id', '=', 'users.id')->join('products', 'bookings.order', '=', 'products.id')->where('bookings.date','LIKE', '%'.$carbon.'%' )->get();
+        // $carbon = new \Carbon\Carbon($request->name);
+        // $carbon = $carbon->format('Y-m-d');
+        return DB::table('bookings')->select('bookings.id','users.name','bookings.date','bookings.status','products.name AS order')->join('users', 'bookings.user_id', '=', 'users.id')->join('products', 'bookings.order', '=', 'products.id')->where('bookings.date','LIKE', '%'.$request->name.'%' )->get();
     }
     public function store(Request $request)
     {
